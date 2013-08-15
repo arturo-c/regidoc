@@ -1,0 +1,2 @@
+//$("<%= escape_javascript(render @stories) %>").appendTo("#stories");
+$('#stories').html('<%= escape_javascript render(@stories) %>');

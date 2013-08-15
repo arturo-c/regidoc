@@ -1,0 +1,9 @@
+<tr>
+  <td><%= story.pivotal_id %></td>
+  <td><%= story.title %></td>
+  <td><%= story.story_type %></td>
+  <td><%= story.assigned_to %></td>
+  <td><%= story.date %></td>
+  <td><%= story.status %></td>
+  <td><%= link_to 'Delete', story, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+</tr>
