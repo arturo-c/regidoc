@@ -13,6 +13,8 @@ gem 'figaro'
 gem 'high_voltage'
 gem 'simple_form', '>= 3.0.0.rc'
 gem 'pivotal-tracker'
+gem 'font-awesome-sass-rails'
+gem 'bootstrap-datetimepicker-rails'
 group :development do
   gem 'better_errors'
   gem 'binding_of_caller', :platforms=>[:mri_19, :rbx]
