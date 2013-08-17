@@ -1,7 +1,7 @@
 class VisitorsController < ApplicationController
 
   def new
-    session[:pivotal_token] = 'ca764d6bb8a17352be715f27bdafbd69'
+    session[:pivotal_token] = 'AItOawndcTXcUSs5LBMj6U6u6ZmeQLkVuSIY3Lk'
     PivotalTracker::Client.token = session[:pivotal_token]
     redirect_to :controller => 'stories', :action => 'index'
   end

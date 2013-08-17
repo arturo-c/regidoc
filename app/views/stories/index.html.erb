@@ -1,7 +1,7 @@
 <h1>Create New Story</h1>
 
 <div>
-  <table class="table table-striped">
+  <table class="table table-striped table-bordered">
     <thead>
       <tr>
         <td>Pivotal ID</td>
@@ -14,8 +14,18 @@
       </tr>
     </thead>
     <tbody>
-      <%= render @stories %>
-      <%= form_for @story, remote: true do |f| %>
+      <% @stories.each do |story| %>
+        <tr>
+          <td><%= story.pivotal_id %></td>
+          <td><%= story.title %></td>
+          <td><%= story.story_type %></td>
+          <td><%= story.assigned_to %></td>
+          <td><%= story.date %></td>
+          <td><%= story.status %></td>
+          <td><%= link_to 'Delete', story, method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-danger' %></td>
+        </tr>
+      <% end %>
+      <%= form_for (@story) do |f| %>
       <tr>
         <td></td>
         <td><%= f.text_field :title, :class => "input-small", :placeholder => "Title" %></td>
@@ -23,7 +33,7 @@
         <td><%= f.text_field :assigned_to, :class => "input-small", :placeholder => "Assigned To" %></td>
         <td><%= f.text_field :date, :class => "input-small", :placeholder => "Date Found" %></td>
         <td><%= f.text_field :status, :class => "input-small", :placeholder => "Status" %></td>
-        <td><%= f.submit %></td>
+        <td><%= f.submit :class => "btn btn-inverse" %></td>
       </tr>
       <% end %>
     </tbody>
