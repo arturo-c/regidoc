@@ -16,24 +16,44 @@
     <tbody>
       <% @stories.each do |story| %>
         <tr>
-          <td><%= story.pivotal_id %></td>
+          <td><%= story.pivotal_id %><%= link_to 'Create story', '', :class => 'btn' %></td>
           <td><%= story.title %></td>
           <td><%= story.story_type %></td>
           <td><%= story.assigned_to %></td>
           <td><%= story.date %></td>
           <td><%= story.status %></td>
-          <td><%= link_to 'Delete', story, method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-danger' %></td>
+          <td>
+            <div class="btn-group span12">
+                <%= link_to '', '', :class => 'btn icon-pencil' %>
+                <%= link_to '', story, method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn icon-remove-sign' %>
+            </div>
+          </td>
         </tr>
       <% end %>
       <%= form_for (@story) do |f| %>
       <tr>
         <td></td>
-        <td><%= f.text_field :title, :class => "input-small", :placeholder => "Title" %></td>
-        <td><%= f.select :story_type, options_for_select([['Bug', 'bug'], ['Feature', 'feature']]) %></td>
-        <td><%= f.text_field :assigned_to, :class => "input-small", :placeholder => "Assigned To" %></td>
-        <td><%= f.text_field :date, :class => "input-small", :placeholder => "Date Found" %></td>
-        <td><%= f.text_field :status, :class => "input-small", :placeholder => "Status" %></td>
-        <td><%= f.submit :class => "btn btn-inverse" %></td>
+        <td><%= f.text_field :title, :class => "input-small span12", :placeholder => "Title" %></td>
+        <td><%= f.select :story_type, options_for_select([['Bug', 'bug'], ['Feature', 'feature']]), :class => 'span12' %></td>
+        <td><%= f.select :assigned_to, options_for_select([['Logan', 'logan'], ['Arturo', 'arturo']]), :class => "input-small span12", :placeholder => "Assigned To" %></td>
+        <td>
+          <div id="datetimepicker1" class="input-append date">
+            <%= f.text_field :date, :class => "input-small", :placeholder => "Date Found", 'data-format' => 'dd/MM/yyyy hh:mm:ss' %>
+            <span class="add-on">
+              <i data-time-icon="icon-time" data-date-icon="icon-calendar">
+              </i>
+            </span>
+          </div>
+          <script type="text/javascript">
+              $(function() {
+                  $('#datetimepicker1').datetimepicker({
+                      language: 'pt-BR'
+                  });
+              });
+           </script>
+        </td>
+        <td><%= f.select :status, options_for_select([['Assigned', 'assigned'], ['Merged', 'merged'], ['Pull request in', 'pull request in']]), :class => "input-small span12", :placeholder => "Status" %></td>
+        <td><%= f.submit :value => "Create line", :class => "btn btn-inverse span12" %></td>
       </tr>
       <% end %>
     </tbody>

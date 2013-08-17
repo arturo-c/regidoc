@@ -30,7 +30,7 @@ class StoriesController < ApplicationController
     delete_pivotal_story
     @story.destroy
     @stories = Story.all
-    render :index
+    redirect_to({ action: 'index' }, { notice: 'Story deleted successfully' })
   end
 
   private
