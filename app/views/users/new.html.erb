@@ -1,0 +1,9 @@
+<h3>Home</h3>
+
+<%= form_for (@user) do |f| %>
+<tr>
+  <td></td>
+  <td><%= f.text_field :token, :class => "input-large span12", :placeholder => "Pivotal Token" %></td>
+  <td><%= f.submit :value => "Login", :class => "btn btn-inverse span12" %>
+</tr>
+<% end %>
