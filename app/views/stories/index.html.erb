@@ -5,6 +5,7 @@
     <thead>
       <tr>
         <td>Pivotal ID</td>
+        <td>Project</td>
         <td>Story</td>
         <td>Type</td>
         <td>Assigned To</td>
@@ -17,6 +18,7 @@
       <% @stories.each do |story| %>
         <tr>
           <td id="pivotal_id"><%= story.pivotal_id %><%= link_to 'Create story', {:action => 'create_pivotal_story', :id => story.id}, {:class => 'btn', :remote => true} unless story.pivotal_id %></td>
+          <td><%= story.project %></td>
           <td><%= story.title %></td>
           <td><%= story.story_type %></td>
           <td><%= story.assigned_to %></td>
@@ -33,6 +35,7 @@
       <%= form_for (@story) do |f| %>
       <tr>
         <td></td>
+        <td><%= f.select :project, options_for_select(@projects), :class => "input-small span12", :placeholder => "Project" %></td>
         <td><%= f.text_field :title, :class => "input-small span12", :placeholder => "Title" %></td>
         <td><%= f.select :story_type, options_for_select([['Bug', 'bug'], ['Feature', 'feature']]), :class => 'span12' %></td>
         <td><%= f.select :assigned_to, options_for_select([['Logan', 'logan'], ['Arturo', 'arturo']]), :class => "input-small span12", :placeholder => "Assigned To" %></td>
