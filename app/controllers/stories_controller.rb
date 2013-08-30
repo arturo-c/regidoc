@@ -6,7 +6,7 @@ class StoriesController < ApplicationController
       format.html
       format.js {@stories}
       format.json {render json: @stories}
-    end 
+    end
   end
 
   def create
@@ -14,8 +14,8 @@ class StoriesController < ApplicationController
     @stories = Story.all
     respond_to do |format|
       if @story.save
-        create_pivotal_story
-        format.html {redirect_to @story, notice: 'Story created successfully'}
+        #create_pivotal_story
+        format.html {redirect_to({ action: 'index' }, { notice: 'Story created successfully' })}
         format.js {}
         format.json {render json: @stories, status: :created, location: @story}
       else
@@ -30,7 +30,7 @@ class StoriesController < ApplicationController
     delete_pivotal_story
     @story.destroy
     @stories = Story.all
-    render :index
+    redirect_to({ action: 'index' }, { notice: 'Story deleted successfully' })
   end
 
   private
